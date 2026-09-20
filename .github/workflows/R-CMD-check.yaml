@@ -16,7 +16,14 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: macos-latest,   r: 'release'}
+          # - {os: macos-latest,   r: 'release'}
+          # macOS fixado em R 4.5: a partir do R 4.6 o CRAN passou a
+          # comprimir os binarios do macOS com Zstandard, e o pak instalado
+          # nos runners do GitHub ainda nao consegue extrair esse formato
+          # ("unknown archive type" ao instalar knitr). Bug conhecido e
+          # generalizado em 09/2026 (ver r-lib/pkgdepends#485). Reverter
+          # para 'release' quando o pak for atualizado nos runners.
+          - {os: macos-latest,   r: '4.5'}
           - {os: windows-latest, r: 'release'}
           - {os: ubuntu-latest,  r: 'devel', http-user-agent: 'release'}
           - {os: ubuntu-latest,  r: 'release'}
