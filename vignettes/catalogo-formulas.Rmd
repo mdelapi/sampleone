@@ -1,0 +1,129 @@
+---
+title: "Catalogo de formulas: da apostila as funcoes do sampleone"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Catalogo de formulas: da apostila as funcoes do sampleone}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+## Sobre este catalogo
+
+O pacote `sampleone` implementa os metodos de amostragem ensinados na
+disciplina de Amostragem do curso de Estatistica da UFMT, com base nas
+notas de aula do Prof. Dr. Mariano Martinez Espinosa (DEs-ICET-UFMT).
+Esta vinheta mapeia cada formula do material para a funcao R
+correspondente, com a pagina/equacao de origem, para que voce navegue
+diretamente da apostila para o codigo (ou vice-versa).
+
+Onde o material nao detalhava algo necessario para a API ficar completa,
+o pacote recorre a literatura classica de amostragem -- principalmente
+Cochran (1977) *Sampling Techniques* e Bolfarine & Bussab (2005)
+*Elementos de Amostragem* -- e isso e sinalizado explicitamente em
+`@references` de cada funcao (visivel em `?nome_da_funcao`).
+
+Todas as funcoes toleram argumentos excedentes: se um problema fornece
+mais variaveis do que uma formula especifica precisa, as sobressalentes
+sao ignoradas silenciosamente. Toda funcao retorna um objeto da classe
+`sampling_result`, com `print()`/`summary()` proprios que trazem, alem
+do resultado numerico, a memoria de calculo passo a passo, uma
+interpretacao em linguagem simples e um insight pedagogico sugerindo
+temas correlatos para explorar em aula.
+
+## Capitulo 2 -- Conceitos base
+
+| Formula | Funcao |
+|---|---|
+| (2.2) Total populacional | `pop_total()` |
+| (2.3)/(2.5) Media e variancia populacional | `pop_media()` |
+| (2.4)/(2.5.1) Proporcao populacional | `pop_proporcao()` |
+| (2.8)-(2.10) Estimadores amostrais | `amostra_estimadores()` |
+
+## Capitulo 3 -- Amostragem Aleatoria Simples (AAS)
+
+| Formula | Funcao |
+|---|---|
+| (3.4)-(3.28.1) Estimacao da media (com/sem reposicao) | `aas_estima_media()` |
+| (3.28.2)-(3.28.3) Estimacao do total | `aas_estima_total()` |
+| (3.16)-(3.44) Estimacao da proporcao | `aas_estima_proporcao()` |
+| (3.15)/(3.37)/(3.38) Tamanho de amostra -- media | `aas_tamanho_media()` |
+| (3.23)/(3.24)/(3.45) Tamanho de amostra -- proporcao | `aas_tamanho_proporcao()` |
+| Exemplo 3.14 (acrescimo percentual) | `aas_ajustar_perdas()` |
+| (3.46)-(3.47) EPA (AASc vs AASs) | `aas_comparar_reposicao()` |
+| Guarda-chuva | `aas_tamanho_amostra()` |
+
+## Capitulo 4 -- Amostragem Estratificada
+
+| Formula | Funcao |
+|---|---|
+| (4.1)-(4.4) Estimacao da media | `estr_estima_media()` |
+| (4.9)-(4.11)/(4.16) Estimacao da proporcao | `estr_estima_proporcao()` |
+| (4.6)/(4.14)-(4.15) Alocacao proporcional | `estr_alocacao_proporcional()` |
+| (4.18)-(4.20) Alocacao de Neyman | `estr_alocacao_neyman()` |
+| (4.7)-(4.8)/(4.13) Alocacao com custo | `estr_alocacao_custo()` |
+| (4.5)/(4.8) Tamanho de amostra -- media | `estr_tamanho_media()` |
+| (4.12)/(4.13) Tamanho de amostra -- proporcao | `estr_tamanho_proporcao()` |
+| (4.24)-(4.25) Ajuste por taxa de resposta | `amostragem_ajustar_resposta()` |
+| Guarda-chuva | `estr_tamanho_amostra()` |
+
+## Capitulo 5 -- Amostragem Sistematica
+
+| Formula | Funcao |
+|---|---|
+| Secao 5.2 -- intervalo de selecao | `sist_intervalo()` |
+| Secao 5.2 -- selecao da amostra (com/sem k inteiro) | `sist_selecionar_amostra()` |
+
+## Capitulo 6 -- Conglomerados
+
+| Formula | Funcao |
+|---|---|
+| (6.1)-(6.4) Media, 1 etapa | `cong1_estima_media()` |
+| (6.7)-(6.10) Proporcao, 1 etapa | `cong1_estima_proporcao()` |
+| (6.5) Tamanho de amostra (media), 1 etapa | `cong1_tamanho_media()` |
+| (6.11) Tamanho de amostra (proporcao), 1 etapa | `cong1_tamanho_proporcao()` |
+| (6.6) Ajuste por deff + taxa de resposta | `cong1_ajustar_deff()` |
+| (6.12)-(6.18) Media, 2 etapas (M conhecido) | `cong2_estima_media()` |
+| (6.19)-(6.23) Estimador razao da media, 2 etapas (M desconhecido) | `cong2_estima_razao_media()` |
+| (6.24)-(6.29) Proporcao, 2 etapas | `cong2_estima_proporcao()` |
+| Guarda-chuva | `cong_estima()` |
+
+## Capitulo 7 -- Regressao e Razao
+
+| Formula | Funcao |
+|---|---|
+| (7.9)-(7.10)/(7.18)-(7.20) Ajuste e teste de origem | `reg_ajustar()`, `reg_teste_origem()` |
+| (7.22)-(7.25) Estimador regressao da media | `reg_estima_media()` |
+| (7.27)-(7.32) Estimador razao de R | `razao_estima_R()` |
+| (7.33)-(7.35) Estimador razao do total | `razao_estima_total()` |
+| (7.36)-(7.38) Estimador razao da media | `razao_estima_media()` |
+| (7.42) Variancia piloto | `razao_variancia_piloto()` |
+| (7.41)/(7.43)/(7.44) Tamanho de amostra (R / total / media) | `razao_tamanho_R()`, `razao_tamanho_total()`, `razao_tamanho_media()` |
+| Guarda-chuva (decide razao vs. regressao) | `razao_vs_regressao_decidir()` |
+
+## Funcao transversal
+
+`amostragem_comparar_planos()` -- compara a variancia obtida sob
+diferentes planos amostrais (AAS, estratificada, conglomerados) para o
+mesmo problema, calculando o EPA (efeito do planejamento amostral /
+design effect) de cada um em relacao a uma referencia escolhida.
+
+## Nota sobre arredondamento de tamanho de amostra
+
+A apostila usa um valor de z arredondado a 2 casas decimais (1,96 / 1,64)
+e arredonda o tamanho de amostra final para o **inteiro mais proximo**
+-- nao necessariamente para cima. O pacote usa por padrao a pratica
+estatistica convencional (`arredondar = "cima"`, sempre conservador,
+com z de precisao total via `qnorm()`), mas todas as funcoes de tamanho
+de amostra aceitam `arredondar = "proximo"` para reproduzir exatamente
+os exemplos numericos da apostila.
+
+## Rastreabilidade dos testes
+
+Todas as formulas acima tem pelo menos um teste `testthat` que reproduz
+um exemplo numerico resolvido na propria apostila (ver `tests/testthat/`
+no codigo-fonte do pacote) -- ou seja, ha rastreabilidade completa entre
+cada funcao e a fonte didatica que a originou.

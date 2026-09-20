@@ -1,0 +1,44 @@
+Package: sampleone
+Type: Package
+Title: Survey Sampling Methods for Teaching and Practice
+Version: 0.1.0
+Authors@R: c(
+    person("Miguel Luiz", "de Almeida Pinto", role = c("aut", "cre"),
+           email = "phd20x@gmail.com"),
+    person("Mariano", "Martinez Espinosa", role = "aut",
+           comment = "Author of the source course material (course notes) this package implements")
+    )
+Description: Provides functions for planning, selecting, and estimating from
+    surveys under the main probability sampling designs taught in
+    introductory sampling courses: simple random sampling with and without
+    replacement, stratified sampling (proportional, Neyman, and cost-based
+    allocation), systematic sampling, one- and two-stage cluster sampling,
+    and ratio and regression estimators. Functions accept a superset of the
+    inputs a given formula requires and silently ignore arguments that are
+    not needed for the selected computation. Each function returns a
+    structured object with the point estimate, the associated variance and
+    confidence interval, a step-by-step breakdown of the calculation, and a
+    short pedagogical note suggesting related methods to explore, making the
+    package suitable both for applied survey work and for classroom use.
+    Methods follow Cochran (1977, ISBN:0-471-16240-X) and
+    Bolfarine & Bussab (2005, ISBN:8521203675), among others referenced in
+    each function's documentation.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+Depends: R (>= 4.1.0)
+Imports:
+    stats,
+    utils
+Suggests:
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown,
+    covr
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+URL: https://github.com/mdelapi/sampleone
+BugReports: https://github.com/mdelapi/sampleone/issues
+Language: en-US
+Config/roxygen2/version: 8.1.0

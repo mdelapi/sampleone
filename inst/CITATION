@@ -1,0 +1,21 @@
+citHeader("Ao usar o pacote 'sampleone', por favor cite tanto o pacote quanto o material de curso em que ele se baseia:")
+
+bibentry(
+  bibtype  = "Manual",
+  title    = "sampleone: Survey Sampling Methods for Teaching and Practice",
+  author   = c(
+    person("Miguel Luiz", "de Almeida Pinto"),
+    person("Mariano", "Martinez Espinosa")
+  ),
+  year     = "2026",
+  note     = "R package version 0.1.0",
+  url      = "https://github.com/mdelapi/sampleone"
+)
+
+bibentry(
+  bibtype  = "Unpublished",
+  title    = "Nocoes de Amostragem para a Area de Estatistica",
+  author   = person("Mariano", "Martinez Espinosa"),
+  note     = "Notas de aula, DEs-ICET-UFMT",
+  year     = "2026"
+)
