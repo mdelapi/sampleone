@@ -43,6 +43,11 @@ the source course notes.
 devtools::install_github("mdelapi/sampleone")
 ```
 
+## Documentation
+
+- Full function reference (input / description / how to call): [`docs/REFERENCIA_FUNCOES_sampleone.md`](docs/REFERENCIA_FUNCOES_sampleone.md) or the equivalent spreadsheet [`docs/sampleone_referencia_funcoes.xlsx`](docs/sampleone_referencia_funcoes.xlsx)
+- Formula-to-function catalog (vignette): `vignette("catalogo-formulas", package = "sampleone")`
+- Blind validation against an independent exercise list: [`docs/VALIDACAO_LISTA01.md`](docs/VALIDACAO_LISTA01.md)
 ## Example
 
 ```r
