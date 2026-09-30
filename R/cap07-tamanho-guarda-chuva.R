@@ -157,6 +157,9 @@ razao_tamanho_media <- function(sr2, N, d, conf = 0.95, arredondar = c("cima", "
 #' This lets students and instructors compare both estimators even when
 #' only one is formally "correct" for the data at hand.
 #'
+#' The function itself does not write anything to the console; print the
+#' returned object (or just type its name) to see a side-by-side summary.
+#'
 #' @inheritParams reg_teste_origem
 #' @param X_barra Known population mean of the auxiliary variable
 #'   (required for the regression estimator; not required for the ratio
@@ -165,27 +168,41 @@ razao_tamanho_media <- function(sr2, N, d, conf = 0.95, arredondar = c("cima", "
 #' @param ... Ignored. Any other variables from a broader problem
 #'   statement may be passed here without causing an error.
 #'
-#' @return A named list with elements `teste` (from [reg_teste_origem()]),
-#'   `razao` (from [razao_estima_media()]), and `regressao` (from
-#'   [reg_estima_media()]), plus a `recomendado` character scalar.
+#' @return An object of class `razao_vs_regressao`: a named list with
+#'   elements `teste` (from [reg_teste_origem()]), `razao` (from
+#'   [razao_estima_media()]), and `regressao` (from [reg_estima_media()]),
+#'   plus a `recomendado` character scalar. It has a `print()` method.
 #' @examples
 #' x <- c(1, 30, 44, 20, 0, 10, 15, 5, 2, 50, 35, 25)
 #' y <- c(2, 35, 50, 27, 1, 15, 17, 7, 0, 53, 35, 30)
-#' razao_vs_regressao_decidir(x, y, X_barra = 10, N = 1500)
+#' res <- razao_vs_regressao_decidir(x, y, X_barra = 10, N = 1500)
+#' res$recomendado
+#' print(res)
 #' @export
 razao_vs_regressao_decidir <- function(x, y, X_barra, N, conf = 0.95, ...) {
   teste <- reg_teste_origem(x, y, conf = conf)
   razao <- razao_estima_media(x = x, y = y, N = N, conf = conf)
   regressao <- reg_estima_media(x, y, X_barra = X_barra, N = N, conf = conf)
 
+  structure(
+    list(teste = teste, razao = razao, regressao = regressao,
+         recomendado = teste$estimativa$recomendado),
+    class = "razao_vs_regressao"
+  )
+}
+
+#' @rdname razao_vs_regressao_decidir
+#' @param x An object returned by `razao_vs_regressao_decidir()`
+#'   (for the `print()` method).
+#' @export
+print.razao_vs_regressao <- function(x, ...) {
   cat("<sampleone> Comparacao razao vs. regressao\n")
   cat(strrep("-", 60), "\n", sep = "")
-  cat(sprintf("Recomendado pelo teste de origem: %s\n\n", toupper(teste$estimativa$recomendado)))
-  cat("[RAZAO]     media =", format(razao$estimativa$media, digits = 6),
-      " IC =", format(razao$intervalo_confianca[1], digits = 4), "-", format(razao$intervalo_confianca[2], digits = 4), "\n")
-  cat("[REGRESSAO] media =", format(regressao$estimativa$media, digits = 6),
-      " IC =", format(regressao$intervalo_confianca[1], digits = 4), "-", format(regressao$intervalo_confianca[2], digits = 4), "\n")
-
-  invisible(list(teste = teste, razao = razao, regressao = regressao,
-                  recomendado = teste$estimativa$recomendado))
-}
+  cat(sprintf("Recomendado pelo teste de origem: %s\n\n", toupper(x$recomendado)))
+  cat("[RAZAO]     media =", format(x$razao$estimativa$media, digits = 6),
+      " IC =", format(x$razao$intervalo_confianca[1], digits = 4), "-",
+      format(x$razao$intervalo_confianca[2], digits = 4), "\n")
+  cat("[REGRESSAO] media =", format(x$regressao$estimativa$media, digits = 6),
+      " IC =", format(x$regressao$intervalo_confianca[1], digits = 4), "-",
+      format(x$regressao$intervalo_confianca[2], digits = 4), "\n")
+  invisible(x)
