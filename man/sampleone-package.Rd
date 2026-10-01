@@ -6,10 +6,10 @@
 \alias{sampleone-package}
 \title{sampleone: Survey Sampling Methods for Teaching and Practice}
 \description{
-Functions for planning, selecting, and estimating from surveys under
-simple random sampling (with/without replacement), stratified
-sampling, systematic sampling, one- and two-stage cluster sampling,
-and ratio/regression estimators. Developed to accompany the "Nocoes
+Planning, selection, and estimation for surveys under simple random
+sampling (with/without replacement), stratified sampling, systematic
+sampling, one- and two-stage cluster sampling, and ratio/regression
+estimators. Developed to accompany the "Nocoes
 de Amostragem" course at DEs-ICET-UFMT (Prof. Dr. Mariano Martinez
 Espinosa).
 }

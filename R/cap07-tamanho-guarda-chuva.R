@@ -31,6 +31,7 @@ razao_variancia_piloto <- function(x = NULL, y = NULL, n = NULL, sum_x = NULL, s
     interpretacao = sprintf("A variancia piloto estimada e sr2=%s, a partir de uma amostra preliminar de %d observacoes.",
                              format(sr2, digits = 6), resumo$n),
     insight = "Use este valor em razao_tamanho_R(), razao_tamanho_total() ou razao_tamanho_media() para planejar o tamanho da amostra definitiva.",
+    referencias = "Cochran (1977), cap. 6.",
     formula_apostila = "(7.42)",
     dados_entrada = list()
   )
@@ -70,6 +71,7 @@ razao_tamanho_R <- function(sr2, N, X_barra, d, conf = 0.95, arredondar = c("cim
       passo("nr = N*sr2 / (N*d* + sr2) = %s", format(n_bruto, digits = 6))
     ),
     interpretacao = sprintf("Sao necessarias aproximadamente %d observacoes para estimar R.", n),
+    insight = "Obtenha sr2 com razao_variancia_piloto() a partir de uma amostra preliminar; este n refere-se a R e difere do n para o total ou para a media (razao_tamanho_total(), razao_tamanho_media()).",
     referencias = "Cochran (1977), cap. 6.",
     formula_apostila = "(7.41)",
     dados_entrada = list(sr2 = sr2, N = N, X_barra = X_barra, d = d, conf = conf)
@@ -102,6 +104,7 @@ razao_tamanho_total <- function(sr2, N, d, conf = 0.95, arredondar = c("cima", "
       passo("nrT = N*sr2 / (N*d* + sr2) = %s", format(n_bruto, digits = 6))
     ),
     interpretacao = sprintf("Sao necessarias aproximadamente %d observacoes para estimar o total.", n),
+    insight = "A precisao d aqui esta na escala do total; para a media use razao_tamanho_media() e para R, razao_tamanho_R(). Obtenha sr2 com razao_variancia_piloto().",
     referencias = "Cochran (1977), cap. 6.",
     formula_apostila = "(7.43)",
     dados_entrada = list(sr2 = sr2, N = N, d = d, conf = conf)
@@ -141,6 +144,7 @@ razao_tamanho_media <- function(sr2, N, d, conf = 0.95, arredondar = c("cima", "
       passo("nrY = N*sr2 / (N*d* + sr2) = %s", format(n_bruto, digits = 6))
     ),
     interpretacao = sprintf("Sao necessarias aproximadamente %d observacoes para estimar a media.", n),
+    insight = "A precisao d aqui esta na escala da media; para o total use razao_tamanho_total() e para R, razao_tamanho_R(). Obtenha sr2 com razao_variancia_piloto().",
     referencias = "Cochran (1977), cap. 6.",
     formula_apostila = "(7.44)",
     dados_entrada = list(sr2 = sr2, N = N, d = d, conf = conf)
@@ -191,9 +195,7 @@ razao_vs_regressao_decidir <- function(x, y, X_barra, N, conf = 0.95, ...) {
   )
 }
 
-#' @rdname razao_vs_regressao_decidir
-#' @param x An object returned by `razao_vs_regressao_decidir()`
-#'   (for the `print()` method).
+#' @noRd
 #' @export
 print.razao_vs_regressao <- function(x, ...) {
   cat("<sampleone> Comparacao razao vs. regressao\n")
@@ -206,3 +208,4 @@ print.razao_vs_regressao <- function(x, ...) {
       " IC =", format(x$regressao$intervalo_confianca[1], digits = 4), "-",
       format(x$regressao$intervalo_confianca[2], digits = 4), "\n")
   invisible(x)
+}

@@ -18,7 +18,7 @@ co-author of the package as author of the source course material).
 ## Status
 
 ✅ **`R CMD check --as-cran`: 0 errors, 0 warnings, 0 relevant notes.**
-✅ 111 testthat tests passing, reproducing worked numerical examples from
+✅ 136 testthat tests passing, reproducing worked numerical examples from
 the source course notes.
 ✅ Formulas catalog complete (all 6 technical chapters) and cross-validated.
 ✅ Core implementation complete: Cap. 2-7, 45 exported functions.

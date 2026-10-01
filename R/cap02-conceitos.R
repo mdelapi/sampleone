@@ -21,6 +21,7 @@ pop_total <- function(x, ...) {
     memoria_calculo = passo("X_T = soma dos %d valores = %s", length(x), format(total, digits = 6)),
     interpretacao = sprintf("O total da caracteristica de interesse na populacao e %s.", format(total, digits = 6)),
     insight = "Compare com pop_media() * N para verificar consistencia.",
+    referencias = "Cochran (1977).",
     formula_apostila = "(2.2)",
     dados_entrada = list(x = x)
   )
@@ -55,6 +56,7 @@ pop_media <- function(x, ...) {
     interpretacao = sprintf("A media populacional e %s, com variancia populacional %s.",
                              format(mu, digits = 6), format(sigma2, digits = 6)),
     insight = "sigma2 aqui usa divisor N (parametro); em amostras, use amostra_variancia() que usa divisor n-1 (estimador nao viesado).",
+    referencias = "Cochran (1977).",
     formula_apostila = c("(2.3)", "(2.5)"),
     dados_entrada = list(x = x)
   )
@@ -91,6 +93,7 @@ pop_proporcao <- function(x, ...) {
     ),
     interpretacao = sprintf("A proporcao populacional e %s.", format(P, digits = 6)),
     insight = "Var(P) = P(1-P) atinge o maximo em P=0.5; se P estiver perto de 0 ou 1, a variancia e menor.",
+    referencias = "Cochran (1977).",
     formula_apostila = c("(2.4)", "(2.5.1)"),
     dados_entrada = list(x = x)
   )
@@ -141,6 +144,7 @@ amostra_estimadores <- function(x, ...) {
     interpretacao = sprintf("Media amostral = %s; variancia amostral (nao viesada) = %s.",
                              format(xbar, digits = 6), format(s2, digits = 6)),
     insight = "Estes sao os blocos de construcao usados internamente pelas funcoes aas_*(), estr_*() etc.",
+    referencias = "Cochran (1977).",
     formula_apostila = formulas,
     dados_entrada = list(x = x)
   )

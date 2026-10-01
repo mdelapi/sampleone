@@ -97,6 +97,7 @@ estr_estima_proporcao <- function(Nk, pk, nk, conf = 0.95, ...) {
     ),
     interpretacao = sprintf("A proporcao estratificada estimada e %s, com IC %.0f%% = [%s ; %s].",
                              format(p_es, digits = 4), 100 * conf, format(ic[1], digits = 4), format(ic[2], digits = 4)),
+    insight = "Estratos com proporcoes pk bem diferentes entre si (internamente homogeneos) produzem o maior ganho de precisao em relacao a AAS -- compare via amostragem_comparar_planos().",
     referencias = "Cochran (1977), cap. 5.",
     formula_apostila = c("(4.9)", "(4.10)", "(4.16)", "(4.11)"),
     dados_entrada = list(Nk = Nk, pk = pk, nk = nk, conf = conf)
@@ -135,6 +136,8 @@ estr_alocacao_proporcional <- function(n, Nk, ...) {
                              n, paste(round(Wk, 4), collapse = ", "),
                              paste(nk_arred, collapse = ", ")),
     interpretacao = sprintf("Alocacao proporcional para %d estratos, somando %d unidades.", length(Nk), sum(nk_arred)),
+    insight = "Compare com estr_alocacao_neyman(): quando os desvios-padrao dos estratos diferem, a alocacao de Neyman reduz a variancia para o mesmo n total; a proporcional e a mais simples e nao exige conhecer sigma_k.",
+    referencias = "Cochran (1977), cap. 5.",
     formula_apostila = c("(4.6)", "(4.14)", "(4.15)"),
     dados_entrada = list(n = n, Nk = Nk)
   )
@@ -227,6 +230,7 @@ estr_alocacao_custo <- function(n, Nk, sigmak = NULL, pk = NULL, ck, ...) {
     estimativa = list(nk = nk_arred, n = sum(nk_arred), L = L),
     memoria_calculo = passo("nk proporcional a (Nk*sigmak)/sqrt(ck) = %s", paste(nk_arred, collapse = ", ")),
     interpretacao = sprintf("Alocacao com custo para %d estratos: estratos mais baratos e/ou mais variaveis recebem mais amostra.", L),
+    insight = "Se o custo por unidade for igual em todos os estratos, esta alocacao coincide com a de Neyman (estr_alocacao_neyman()) -- o custo entra apenas por sua raiz quadrada.",
     referencias = "Cochran (1977), cap. 5.",
     formula_apostila = c("(4.7)", "(4.8)", "(4.13)"),
     dados_entrada = list(n = n, Nk = Nk, sigmak = sigmak, ck = ck)

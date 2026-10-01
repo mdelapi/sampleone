@@ -23,9 +23,10 @@ estimator, whose mean form only needs \code{N}).}
 statement may be passed here without causing an error.}
 }
 \value{
-A named list with elements \code{teste} (from \code{\link[=reg_teste_origem]{reg_teste_origem()}}),
-\code{razao} (from \code{\link[=razao_estima_media]{razao_estima_media()}}), and \code{regressao} (from
-\code{\link[=reg_estima_media]{reg_estima_media()}}), plus a \code{recomendado} character scalar.
+An object of class \code{razao_vs_regressao}: a named list with
+elements \code{teste} (from \code{\link[=reg_teste_origem]{reg_teste_origem()}}), \code{razao} (from
+\code{\link[=razao_estima_media]{razao_estima_media()}}), and \code{regressao} (from \code{\link[=reg_estima_media]{reg_estima_media()}}),
+plus a \code{recomendado} character scalar. It has a \code{print()} method.
 }
 \description{
 Convenience "umbrella" function that fits the regression model, tests
@@ -36,8 +37,14 @@ following the full workflow of Examples 7.1-7.2 of the course notes.
 This lets students and instructors compare both estimators even when
 only one is formally "correct" for the data at hand.
 }
+\details{
+The function itself does not write anything to the console; print the
+returned object (or just type its name) to see a side-by-side summary.
+}
 \examples{
 x <- c(1, 30, 44, 20, 0, 10, 15, 5, 2, 50, 35, 25)
 y <- c(2, 35, 50, 27, 1, 15, 17, 7, 0, 53, 35, 30)
-razao_vs_regressao_decidir(x, y, X_barra = 10, N = 1500)
+res <- razao_vs_regressao_decidir(x, y, X_barra = 10, N = 1500)
+res$recomendado
+print(res)
 }

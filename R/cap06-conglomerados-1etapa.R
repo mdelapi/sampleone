@@ -110,6 +110,7 @@ cong1_estima_proporcao <- function(yi, Mi, Nc, M = NULL, conf = 0.95, ...) {
     ),
     interpretacao = sprintf("A proporcao estimada e %s, com IC %.0f%% = [%s ; %s].",
                              format(p_c, digits = 4), 100 * conf, format(ic[1], digits = 4), format(ic[2], digits = 4)),
+    insight = "Conglomerados internamente homogeneos inflam a variancia em relacao a AAS de mesmo n -- compare via amostragem_comparar_planos() e considere dois estagios (cong2_estima_proporcao()).",
     referencias = "Cochran (1977), cap. 9.",
     formula_apostila = c("(6.7)", "(6.8)", "(6.9)", "(6.10)"),
     dados_entrada = list(yi = yi, Mi = Mi, Nc = Nc, M = M, conf = conf)
@@ -155,6 +156,7 @@ cong1_tamanho_media <- function(Nc, sigmac2, M_barra, d, conf = 0.95,
       passo("nc = Nc*sigmac2 / (Nc*d* + sigmac2) = %s", format(n_bruto, digits = 6))
     ),
     interpretacao = sprintf("Sao necessarios aproximadamente %d conglomerados.", nc),
+    insight = "O resultado e o numero de conglomerados, nao de elementos; o total esperado de elementos e aproximadamente nc * M_barra. Para efeito de delineamento e nao resposta, use cong1_ajustar_deff().",
     referencias = "Cochran (1977), cap. 9.",
     formula_apostila = "(6.5)",
     dados_entrada = list(Nc = Nc, sigmac2 = sigmac2, M_barra = M_barra, d = d, conf = conf)
@@ -190,6 +192,7 @@ cong1_tamanho_proporcao <- function(Nc, sigmacp2, M_barra, d, conf = 0.95,
       passo("ncp = Nc*sigmacp2 / (Nc*d* + sigmacp2) = %s", format(n_bruto, digits = 6))
     ),
     interpretacao = sprintf("Sao necessarios aproximadamente %d conglomerados.", ncp),
+    insight = "O resultado e o numero de conglomerados a sortear; o total esperado de elementos e aproximadamente ncp * M_barra. Para efeito de delineamento e nao resposta, use cong1_ajustar_deff().",
     referencias = "Cochran (1977), cap. 9.",
     formula_apostila = "(6.11)",
     dados_entrada = list(Nc = Nc, sigmacp2 = sigmacp2, M_barra = M_barra, d = d, conf = conf)

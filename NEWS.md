@@ -29,5 +29,5 @@
   used by every function above.
 * Vignette `catalogo-formulas` mapping every course-notes equation to its
   corresponding package function.
-* 111 testthat tests, each reproducing a specific worked numerical example
+* 136 testthat tests, each reproducing a specific worked numerical example
   from the source course notes.

@@ -8,11 +8,11 @@ Authors@R: c(
     person("Mariano", "Martinez Espinosa", role = "aut",
            comment = "Author of the source course material (course notes) this package implements")
     )
-Description: Provides functions for planning, selecting, and estimating from
-    surveys under the main probability sampling designs taught in
-    introductory sampling courses: simple random sampling with and without
-    replacement, stratified sampling (proportional, Neyman, and cost-based
-    allocation), systematic sampling, one- and two-stage cluster sampling,
+Description: Planning, selection, and estimation for surveys under the main
+    probability sampling designs taught in introductory sampling courses:
+    simple random sampling with and without replacement, stratified
+    sampling (proportional, Neyman, and cost-based allocation), systematic
+    sampling, one- and two-stage cluster sampling,
     and ratio and regression estimators. Functions accept a superset of the
     inputs a given formula requires and silently ignore arguments that are
     not needed for the selected computation. Each function returns a
@@ -25,12 +25,12 @@ Description: Provides functions for planning, selecting, and estimating from
     each function's documentation.
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
 Roxygen: list(markdown = TRUE)
 Depends: R (>= 4.1.0)
 Imports:
     stats,
-    utils
+    utils,
+    withr
 Suggests:
     testthat (>= 3.0.0),
     knitr,

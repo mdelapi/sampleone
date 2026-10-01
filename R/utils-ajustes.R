@@ -47,6 +47,7 @@ amostragem_ajustar_deff_resposta <- function(n_prime, deff = 1.5, taxa_resposta 
     interpretacao = sprintf("Considerando um efeito de delineamento de %.2f e uma taxa de resposta esperada de %.0f%%, o tamanho final de amostra e %d.",
                              deff, 100 * taxa_resposta, n_final),
     insight = "O design effect (deff) mede o quanto a variancia sob um plano mais complexo (conglomerados, multietapas) e maior do que sob AAS para o mesmo n -- deff=1 significa nenhuma perda de eficiencia. Aplicavel a qualquer n' de base (AAS, estratificada ou conglomerados), nao apenas a conglomerados.",
+    referencias = "Espinosa et al. (2019), conforme citado na apostila, Eq. (6.6).",
     formula_apostila = "(6.6)",
     dados_entrada = list(n_prime = n_prime, deff = deff, taxa_resposta = taxa_resposta)
   )

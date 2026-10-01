@@ -164,6 +164,7 @@ estr_tamanho_proporcao <- function(Nk, pk, d, conf = 0.95, ck = NULL,
     ),
     interpretacao = sprintf("Sao necessarias %d unidades amostrais no total%s.",
                              n, if (!is.null(nk_out)) paste0(", alocadas como: ", paste(nk_out, collapse = ", ")) else ""),
+    insight = "Sem informacao previa sobre os pk, usar pk=0.5 em todos os estratos e a escolha conservadora (maior n); compare o n obtido com aas_tamanho_proporcao() para visualizar o ganho da estratificacao.",
     referencias = "Cochran (1977), cap. 5.",
     formula_apostila = formula_usada,
     dados_entrada = list(Nk = Nk, pk = pk, d = d, conf = conf, ck = ck, alocacao = alocacao)

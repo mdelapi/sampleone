@@ -49,6 +49,8 @@ sist_intervalo <- function(N, n, ...) {
     } else {
       sprintf("O intervalo de selecao aproximado e k=%d, com uma correcao k*=%d a ser somada a partir do segundo elemento selecionado.", k, k_estrela)
     },
+    insight = "Use sist_selecionar_amostra() para obter as posicoes dos elementos; quando N/n nao e inteiro, a correcao k* permite obter exatamente n elementos dentro de 1:N.",
+    referencias = "Cochran (1977), cap. 8.",
     formula_apostila = "Secao 5.2",
     dados_entrada = list(N = N, n = n)
   )
@@ -87,14 +89,13 @@ sist_selecionar_amostra <- function(N, n, r = NULL, semente = NULL, ...) {
   k_inteiro <- info$estimativa$k_inteiro
 
   if (is.null(r)) {
-    if (!is.null(semente)) {
-      old_seed <- if (exists(".Random.seed", envir = .GlobalEnv)) get(".Random.seed", envir = .GlobalEnv) else NULL
-      on.exit({
-        if (!is.null(old_seed)) assign(".Random.seed", old_seed, envir = .GlobalEnv)
-      }, add = TRUE)
-      set.seed(semente)
+    r <- if (is.null(semente)) {
+      sample.int(k, 1)
+    } else {
+      # with_seed() fixa a semente apenas durante o sorteio e restaura o
+      # estado anterior do gerador (sem alterar o .GlobalEnv).
+      withr::with_seed(semente, sample.int(k, 1))
     }
-    r <- sample.int(k, 1)
   }
   validar_escalar(r, "r", min = 1, max = k)
 

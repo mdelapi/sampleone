@@ -223,6 +223,7 @@ cong2_estima_proporcao <- function(Mi, mi, pi_hat, Nc, M = NULL, conf = 0.95, ..
     ),
     interpretacao = sprintf("A proporcao estimada e %s, com IC %.0f%% = [%s ; %s].",
                              format(p_c2e, digits = 4), 100 * conf, format(ic[1], digits = 4), format(ic[2], digits = 4)),
+    insight = "Compare variancia$parte1_entre com variancia$parte2_dentro: se a parte 'dentro' for pequena, amostrar mais elementos por conglomerado traz pouco ganho -- amostre mais conglomerados.",
     referencias = "Cochran (1977), cap. 10.",
     formula_apostila = c("(6.24)", "(6.25)", "(6.26)", "(6.27)", "(6.28)", "(6.29)"),
     dados_entrada = list(Mi = Mi, mi = mi, pi_hat = pi_hat, Nc = Nc, conf = conf)

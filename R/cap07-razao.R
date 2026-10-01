@@ -82,6 +82,7 @@ razao_estima_R <- function(x = NULL, y = NULL, n = NULL, sum_x = NULL, sum_y = N
     ),
     interpretacao = sprintf("A razao populacional estimada e %s, com IC %.0f%% = [%s ; %s].",
                              format(resumo$r, digits = 4), 100 * conf, format(ic[1], digits = 4), format(ic[2], digits = 4)),
+    insight = "R = soma(y)/soma(x) e a base dos estimadores razao do total e da media: use razao_estima_total() ou razao_estima_media() com os mesmos dados; se a reta nao passar pela origem, veja reg_teste_origem().",
     referencias = "Cochran (1977), cap. 6.",
     formula_apostila = c("(7.27)", "(7.28)", "(7.29)", "(7.30)", "(7.31)", "(7.32)"),
     dados_entrada = list(N = N, X = X, conf = conf)
@@ -127,6 +128,7 @@ razao_estima_total <- function(x = NULL, y = NULL, n = NULL, sum_x = NULL, sum_y
     ),
     interpretacao = sprintf("O total estimado (razao) e %s, com IC %.0f%% = [%s ; %s].",
                              format(tau_Y, digits = 6), 100 * conf, format(ic[1], digits = 6), format(ic[2], digits = 6)),
+    insight = "O estimador razao do total exige o total X da variavel auxiliar conhecido; se reg_teste_origem() indicar que a reta nao passa pela origem, compare com o estimador regressao (reg_estima_media()).",
     referencias = "Cochran (1977), cap. 6.",
     formula_apostila = c("(7.33)", "(7.34)", "(7.35)"),
     dados_entrada = list(N = N, X = X, conf = conf)

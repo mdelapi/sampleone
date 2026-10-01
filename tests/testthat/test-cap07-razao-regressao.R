@@ -83,8 +83,10 @@ test_that("razao_tamanho_media reproduz Exemplo 7.7", {
 })
 
 test_that("razao_vs_regressao_decidir ignora argumentos excedentes e recomenda corretamente", {
-  res <- suppressWarnings(utils::capture.output(
+  expect_silent(
     resultado <- razao_vs_regressao_decidir(x72, y72, X_barra = 10, N = 1500, variavel_extra = "abc")
-  ))
+  )
+  expect_s3_class(resultado, "razao_vs_regressao")
   expect_equal(resultado$recomendado, "razao")
+  expect_output(print(resultado), "Comparacao razao vs. regressao")
 })
